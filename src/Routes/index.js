@@ -5,6 +5,9 @@ const MainRoutes = () => {
         {
             // path: '/',
             // element: <MainLayout />,
+            // children: [
+                // { index: true, element: <Home /> }
+            // ],
         },
     ])
     return routes
