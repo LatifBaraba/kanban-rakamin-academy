@@ -3,9 +3,11 @@ import Card from '../Components/card'
 import { getTodos, setLogin } from '../Api'
 import { useMutation, useQueries, useQuery } from 'react-query'
 import Toast from '../Utils/toast'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     const token = localStorage.getItem('token')
+    const navigate = useNavigate()
 
     const { mutate: mutateLogin } = useMutation(setLogin, {
         onSuccess: data => {
@@ -27,6 +29,8 @@ const Home = () => {
         onError: () => {
             Toast('error', 'Unauthorized')
             localStorage.clear()
+            mutateLogin()
+            navigate(0)
         },
         retry: 1,
     })
