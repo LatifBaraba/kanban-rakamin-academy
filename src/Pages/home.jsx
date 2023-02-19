@@ -15,6 +15,7 @@ const Home = () => {
             localStorage.setItem('isLoggedin', true)
             localStorage.setItem('token', data.auth_token)
             refetchTodos()
+            navigate(0)
         },
     })
 
@@ -26,11 +27,10 @@ const Home = () => {
         onSuccess: data => {
             data.length == 0 && Toast('warning', 'Todos is empty')
         },
-        onError: () => {
+        onError: async () => {
             Toast('error', 'Unauthorized')
-            localStorage.clear()
-            mutateLogin()
-            navigate(0)
+            // localStorage.clear()
+            await mutateLogin()
         },
         retry: 1,
     })
